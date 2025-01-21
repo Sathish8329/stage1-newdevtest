@@ -1,0 +1,43 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greenfriends-app
+  namespace: greenfriends
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: preprod
+      containers:
+      - name: frontend
+        image: sathish8329/webengage:1118
+        ports:
+        - containerPort: 8081  # Ensure the container is exposed on port 8001
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: greenfriends-frontend-service
+  namespace: greenfriends
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80          # External port exposed for the service
+      targetPort: 8081   # Matches the container port in the deployment
+  type: NodePort        # Optional: Depending on your needs, you may choose ClusterIP or LoadBalancer instead
