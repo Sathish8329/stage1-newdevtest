@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
 spec:
   rules:
-  - host: "stage1-newdevtest.kovaion.dev"  # Root domain for frontend service
+  - host: "newdevtest.kovaion.dev"  # Root domain for frontend service
     http:
       paths:
       - path: /
