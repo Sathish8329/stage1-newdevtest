@@ -1,9 +1,13 @@
-
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stage1-newdevtest
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greenfriends-app
-  namespace: greenfriends
+  name: stage1-newdevtest-app
+  namespace: stage1-newdevtest
 spec:
   replicas: 1
   strategy:
@@ -20,7 +24,7 @@ spec:
         app: frontend
     spec:
       nodeSelector:
-        eks.amazonaws.com/nodegroup: preprod
+        eks.amazonaws.com/nodegroup: preprod-private
       containers:
       - name: frontend
         image: sathish8329/stage1-newdevtest:1118
@@ -31,8 +35,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: greenfriends-frontend-service
-  namespace: greenfriends
+  name: stage1-newdevtest-frontend-service
+  namespace: stage1-newdevtest
 spec:
   selector:
     app: frontend
