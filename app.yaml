@@ -29,7 +29,7 @@ spec:
         eks.amazonaws.com/nodegroup: preprod-private
       containers:
       - name: frontend
-        image: sathish8329/kovaionplay:1891
+        image: sathish8329/kovaionplay:1897
         ports:
         - containerPort: 8081
         resources:
