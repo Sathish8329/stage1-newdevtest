@@ -29,7 +29,7 @@ spec:
         eks.amazonaws.com/nodegroup: preprod-private
       containers:
       - name: frontend
-        image: sathish8329/stage1-newdevtest:1118
+        image: sathish8329/kovaionplay:1891
         ports:
         - containerPort: 8081
         # Modified probes with increased timeouts and initial delay
