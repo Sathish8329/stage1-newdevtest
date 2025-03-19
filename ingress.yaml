@@ -21,3 +21,13 @@ spec:
             name: stage1-newdevtest-frontend-service  # Frontend service
             port:
               number: 8081  # The port that the frontend service is exposing
+  - host: "www.kovaionplay.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: stage1-newdevtest-frontend-service
+            port:
+              number: 8081              
