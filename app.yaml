@@ -8,6 +8,9 @@ kind: Deployment
 metadata:
   name: stage1-newdevtest-app
   namespace: stage1-newdevtest
+  labels:
+    app: frontend
+    environment: stage1
 spec:
   replicas: 1
   strategy:
@@ -24,12 +27,33 @@ spec:
         app: frontend
     spec:
       nodeSelector:
-        eks.amazonaws.com/nodegroup: preprod-private
+        eks.amazonaws.com/nodegroup: stage-private
       containers:
       - name: frontend
         image: sathish8329/stage1-newdevtest:1118
         ports:
-        - containerPort: 8081  # Ensure the container is exposed on port 8001
+        - name: http
+          containerPort: 8081
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        imagePullPolicy: Always
 ---
 
 apiVersion: v1
