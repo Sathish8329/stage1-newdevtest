@@ -18,6 +18,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: stage1-newdevetest-frontend-service  # Frontend service
+            name: stage1-newdevtest-frontend-service  # Frontend service
             port:
-              number: 80  # The port that the frontend service is exposing
+              number: 8081  # The port that the frontend service is exposing
