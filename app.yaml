@@ -10,7 +10,6 @@ metadata:
   namespace: stage1-newdevtest
   labels:
     app: frontend
-    environment: stage1
 spec:
   replicas: 1
   strategy:
@@ -27,13 +26,39 @@ spec:
         app: frontend
     spec:
       nodeSelector:
-        eks.amazonaws.com/nodegroup: stage-private
+        eks.amazonaws.com/nodegroup: preprod-private
       containers:
       - name: frontend
-        image: sathish8329/kovaionplay:1891
+        image: sathish8329/stage1-newdevtest:1118
         ports:
-        - name: http
-          containerPort: 8081
+        - containerPort: 8081
+        # Modified probes with increased timeouts and initial delay
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 90
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 3
+        # Add startup probe to give application time to fully initialize
+        startupProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 20
+          timeoutSeconds: 10
+          periodSeconds: 15
+          failureThreshold: 12  # Allows up to 3 minutes (12 * 15s) for startup
         resources:
           requests:
             cpu: 100m
@@ -41,18 +66,6 @@ spec:
           limits:
             cpu: 500m
             memory: 1Gi
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8081
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8081
-          initialDelaySeconds: 15
-          periodSeconds: 20
         imagePullPolicy: Always
 ---
 
