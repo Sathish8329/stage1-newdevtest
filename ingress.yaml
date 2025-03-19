@@ -20,7 +20,7 @@ spec:
           service:
             name: stage1-newdevtest-frontend-service  # Frontend service
             port:
-              number: 80  # The port that the frontend service is exposing
+              number: 8081  # The port that the frontend service is exposing
   - host: "www.kovaionplay.com"
     http:
       paths:
@@ -30,4 +30,4 @@ spec:
           service:
             name: stage1-newdevtest-frontend-service
             port:
-              number: 80              
+              number: 8081              
