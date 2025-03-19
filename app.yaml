@@ -32,36 +32,13 @@ spec:
         image: sathish8329/kovaionplay:1891
         ports:
         - containerPort: 8081
-        # Extended startup probe configuration
-        startupProbe:
-          tcpSocket:     # Use TCP socket check instead of HTTP
-            port: 8081
-          initialDelaySeconds: 30
-          timeoutSeconds: 15
-          periodSeconds: 20
-          failureThreshold: 15  # Allow up to 5 minutes (15 * 20s) for startup
-        # Only enable readiness and liveness probes after startup succeeds
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8081
-          timeoutSeconds: 15
-          periodSeconds: 20
-          successThreshold: 1
-          failureThreshold: 3
-        livenessProbe:
-          tcpSocket:     # Use TCP socket check for liveness
-            port: 8081
-          timeoutSeconds: 15
-          periodSeconds: 30
-          failureThreshold: 3
         resources:
           requests:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 900Mi
           limits:
-            cpu: 500m 
-            memory: 1Gi
+            cpu: 1000m 
+            memory: 1.5Gi
         imagePullPolicy: Always
 ---
 
