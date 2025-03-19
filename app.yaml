@@ -47,4 +47,4 @@ spec:
     - protocol: TCP
       port: 80          # External port exposed for the service
       targetPort: 8081   # Matches the container port in the deployment
-  type: NodePort        # Optional: Depending on your needs, you may choose ClusterIP or LoadBalancer instead
+  type: ClusterIP        # Optional: Depending on your needs, you may choose ClusterIP or LoadBalancer instead
