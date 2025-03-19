@@ -32,14 +32,7 @@ spec:
         image: sathish8329/kovaionplay:1897
         ports:
         - containerPort: 8081
-        resources:
-          requests:
-            cpu: 50m
-            memory: 900Mi
-          limits:
-            cpu: 1000m 
-            memory: 1.5Gi
-        imagePullPolicy: Always
+
 ---
 
 apiVersion: v1
