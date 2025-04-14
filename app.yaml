@@ -31,7 +31,7 @@ spec:
       - name: frontend
         image: sathish8329/kovaionplay:2239
         ports:
-        - containerPort: 80   # Ensure this matches the Service targetPort
+        - containerPort: 3000   # Ensure this matches the Service targetPort
 
 ---
 
@@ -45,8 +45,8 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80          # External port exposed for the service
-      targetPort: 80    # Fix: This should match containerPort in Deployment
+      port: 3000          # External port exposed for the service
+      targetPort: 3000    # Fix: This should match containerPort in Deployment
   type: ClusterIP        # Change to LoadBalancer if you need external access
 
 ---
