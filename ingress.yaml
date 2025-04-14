@@ -20,7 +20,7 @@ spec:
           service:
             name: stage1-newdevtest-frontend-service  # Frontend service
             port:
-              number: 80  # Fix: Matches the service port
+              number: 3000  # Fix: Matches the service port
   - host: "www.kovaionplay.com"
     http:
       paths:
@@ -30,4 +30,4 @@ spec:
           service:
             name: stage1-newdevtest-frontend-service
             port:
-              number: 80  # Fix: Matches the service port
+              number: 3000  # Fix: Matches the service port
