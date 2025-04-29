@@ -39,7 +39,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: stage1-newdevtest-frontend-service
-  namespace: stage1-newdevtest
+  namespace: sportzia-real-stage
 spec:
   selector:
     app: frontend
