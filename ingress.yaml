@@ -33,5 +33,5 @@ spec:
               number: 3000  # Fix: Matches the service port
   tls:
   - hosts:
-      - sportzia.yourdomain.com   # Replace with your actual domain
+      - sportzia-preprod.kovaionplay.com   # Replace with your actual domain
     secretName: cloudflare-tls-cert
