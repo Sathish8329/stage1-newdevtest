@@ -29,7 +29,7 @@ spec:
         eks.amazonaws.com/nodegroup: kovaion-spot-ng
       containers:
       - name: frontend
-        image: sathish8329/kovaionplaypreprod:4707
+        image: sathish8329/kovaionplaypreprod:4709
         ports:
         - containerPort: 3000   # Ensure this matches the Service targetPort
 
